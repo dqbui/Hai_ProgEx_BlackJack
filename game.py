@@ -11,12 +11,12 @@ class Game:
         self.dealer = dealer
         self.bet = None
         self.deck = Deck()
+        # print(self.deck.cards)
 
     def start_game(self):
         while self.player.balance > 0:
             game_starter = input(
                 f'You are starting with ${self.player.balance}. Would you like to play a hand? ')
-
             if game_starter.lower() == 'yes':
                 while True:
                     new_bet = float(input('Place your bet: '))
@@ -28,8 +28,18 @@ class Game:
                         self.bet = new_bet
                         break
 
-                print('you lost')
-                self.player.balance = self.player.balance - self.bet
+                print(f'Card left in deck {len(self.deck.cards)}')
+
+                player_hand = Hand()
+                dealer_hand = Hand()
+
+                player_hand.add_to_hand(self.deck.deal(6))
+                dealer_hand.add_to_hand(self.deck.deal(6))
+
+                print(
+                    f'Player hand {player_hand.cards} has value {player_hand.get_value()}')
+                print(
+                    f'Dealer hand {dealer_hand.cards} has value {dealer_hand.get_value()}')
 
             else:
                 print('Okay then...')
