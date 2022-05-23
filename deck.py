@@ -29,14 +29,10 @@ class Deck:
         return self.cards
 
     def deal(self, num_cards):
-        # reshuffle deck for new hand when less than half is left
-        if num_cards > 1 and len(self.cards) < 26:
-            print('Deck too short! Reshuffling...!')
-            self.__init__()
-
         cards_dealt = []
         for _ in range(num_cards):
             cards_dealt.append(self.cards.pop(0))
+            print('Dealt a card')
         return cards_dealt
 
 
