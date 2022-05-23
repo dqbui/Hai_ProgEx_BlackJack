@@ -25,8 +25,7 @@ class Game:
                 self.consecutive_hands -= 1
 
                 if self.consecutive_hands == 0:
-                    print(
-                        f'Five hands played. Reshuffling deck')
+                    print('Five hands played. Reshuffling deck')
 
                     self.deck = Deck()
                     self.consecutive_hands = self.HANDS_BEFORE_SHUFFLE
