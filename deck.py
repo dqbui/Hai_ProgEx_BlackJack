@@ -32,7 +32,7 @@ class Deck:
         cards_dealt = []
         for _ in range(num_cards):
             cards_dealt.append(self.cards.pop(0))
-            print('Dealt a card')
+            # print('Dealt a card')
         return cards_dealt
 
 
