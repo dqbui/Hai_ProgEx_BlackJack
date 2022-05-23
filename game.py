@@ -6,12 +6,14 @@ from hand import Hand
 class Game:
     MINIMUM_BET = 1
     BLACK_JACK = 21
+    HANDS_BEFORE_SHUFFLE = 5
 
     def __init__(self, player, dealer):
         self.player = player
         self.dealer = dealer
         self.bet = None
         self.deck = Deck()
+        self.consecutive_hands = self.HANDS_BEFORE_SHUFFLE
         # print(self.deck.cards)
 
     def start_game(self):
@@ -19,16 +21,35 @@ class Game:
             game_starter = input(
                 f'You are starting with ${self.player.balance}. Would you like to play a hand? ')
             if game_starter.lower() == 'yes':
+
+                self.consecutive_hands -= 1
+
+                if self.consecutive_hands == 0:
+                    print(
+                        f'Five hands played. Reshuffling deck')
+
+                    self.deck = Deck()
+                    self.consecutive_hands = self.HANDS_BEFORE_SHUFFLE
+
                 while True:
                     try:
-                        new_bet = float(input('Place your bet: '))
-                        if new_bet > self.player.balance:
-                            print('You do not have sufficient funds.')
-                        elif new_bet < self.MINIMUM_BET:
-                            print('The minimum bet is $1!')
-                        else:
-                            self.bet = new_bet
+                        new_bet = input('Place your bet. Dot (.) for all-in: ')
+
+                        if new_bet == ".":  # all in function
+                            print(
+                                f'All-in! Player bets ${self.player.balance}')
+                            self.bet = self.player.balance
                             break
+
+                        else:  # convert to float and set as bet amount
+                            new_bet = float(new_bet)
+                            if new_bet > self.player.balance:
+                                print('You do not have sufficient funds.')
+                            elif new_bet < self.MINIMUM_BET:
+                                print('The minimum bet is $1!')
+                            else:
+                                self.bet = new_bet
+                                break
                     except ValueError:
                         print('Invalid! Bet amount must be a number')
 
