@@ -7,7 +7,11 @@ player = Player(STARTING_BALANCE)
 dealer = Dealer()
 game = Game(player, dealer)
 
+# this is a new comment
 
 print("Welcome to Blackjack!")
 print()
 game.start_game()
+
+
+# this is another comment
