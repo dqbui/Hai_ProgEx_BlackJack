@@ -67,17 +67,34 @@ class Game:
                 else:
                     print('Dealer turn next')
 
-                while dealer_hand.get_value() <= self.BLACK_JACK:
-                    if dealer_hand.get_value() >= 17:
-                        print('Dealer stays')
-                        print(
-                            f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards)} has value {dealer_hand.get_value()}')
-                        break
-                    elif dealer_hand.get_value() <= 16:
-                        print('Dealer hit')
-                        dealer_hand.add_to_hand(self.deck.deal(1))
-                        print(
-                            f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards)} has value {dealer_hand.get_value()}')
+                    while dealer_hand.get_value() <= self.BLACK_JACK:
+                        if dealer_hand.get_value() >= 17:
+                            print('Dealer stays')
+                            print(
+                                f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards)} has value {dealer_hand.get_value()}')
+                            break
+                        elif dealer_hand.get_value() <= 16:
+                            print('Dealer hit')
+                            dealer_hand.add_to_hand(self.deck.deal(1))
+                            print(
+                                f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards)} has value {dealer_hand.get_value()}')
+
+                    if dealer_hand.get_value() > 21:
+                        print('Player wins')
+                        self.player.balance += self.bet
+
+                    else:
+                        if dealer_hand.get_value() > player_hand.get_value():
+                            print('Dealer wins')
+                            self.player.balance -= self.bet
+                        elif dealer_hand.get_value() < player_hand.get_value():
+                            print('Player wins')
+                            self.player.balance += self.bet
+                            if player_hand.get_value() == self.BLACK_JACK:
+                                print('YOU GOT A BLACKJACK. HALF BET AWARDED')
+                                self.player.balance += self.bet/2
+                        else:
+                            print('Tie')
 
             else:
                 print('Okay then...')
