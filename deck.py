@@ -24,7 +24,7 @@ class Deck:
         return card_list
 
     def shuffle(self):
-        print('shuffling')
+        # print('shuffling')
         random.shuffle(self.cards)
         return self.cards
 

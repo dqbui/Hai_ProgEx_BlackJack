@@ -2,9 +2,9 @@ class Dealer:
     def __init__(self):
         pass
 
-    def get_str_hand(self, hand):
+    def get_str_hand(self, hand, hidden=False):
         card_str = ''
-        if len(hand) == 2:
+        if hidden == True:
             card_str = f'{hand[0]}, unknown'
         else:
             for card in hand:

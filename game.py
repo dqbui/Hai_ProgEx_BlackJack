@@ -64,7 +64,7 @@ class Game:
                 print(
                     f'Player hand {self.player.get_str_hand(player_hand.cards)}has value {player_hand.get_value()}')
                 print(
-                    f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards)}')  # has value {dealer_hand.get_value()}')
+                    f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards, True)}')  # has value {dealer_hand.get_value()}')
 
                 while player_hand.get_value() <= self.BLACK_JACK:
                     hit_or_stay = input(
@@ -87,6 +87,8 @@ class Game:
                     self.player.balance -= self.bet
                 else:
                     print('Dealer turn next')
+                    print(
+                        f'Dealer cards: {self.dealer.get_str_hand(dealer_hand.cards)}')
 
                     while dealer_hand.get_value() <= self.BLACK_JACK:
                         if dealer_hand.get_value() >= 17:
@@ -95,7 +97,7 @@ class Game:
                                 f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards)} has value {dealer_hand.get_value()}')
                             break
                         elif dealer_hand.get_value() <= 16:
-                            print('Dealer hit')
+                            print('Dealer hits')
                             dealer_hand.add_to_hand(self.deck.deal(1))
                             print(
                                 f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards)} has value {dealer_hand.get_value()}')
