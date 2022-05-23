@@ -1,6 +1,7 @@
 from hashlib import new
 from deck import Deck
 from hand import Hand
+from time import sleep
 
 
 class Game:
@@ -90,6 +91,7 @@ class Game:
                         f'Dealer cards: {self.dealer.get_str_hand(dealer_hand.cards)}')
 
                     while dealer_hand.get_value() <= self.BLACK_JACK:
+                        sleep(1)
                         if dealer_hand.get_value() >= 17:
                             print('Dealer stays')
                             print(
