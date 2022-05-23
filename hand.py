@@ -18,7 +18,7 @@ class Hand:
                 hand_value += 10
 
         while hand_value <= 11 and ace_count > 0:
-            print('adding in aces')
+            # print('adding in aces')
             hand_value += 10
             ace_count -= 1
 

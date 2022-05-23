@@ -50,6 +50,8 @@ class Game:
                         'Would you like to hit or stay? ').lower()
 
                     if hit_or_stay == 'stay':
+                        print(
+                            f'Player hand {self.player.get_str_hand(player_hand.cards)} has value {player_hand.get_value()}')
                         break
                     elif hit_or_stay == 'hit':
                         player_hand.add_to_hand(self.deck.deal(1))
@@ -58,8 +60,24 @@ class Game:
                     else:
                         print('That is not a valid option')
 
-                print(
-                    f'Final player hand: {self.player.get_str_hand(player_hand.cards)} has value {player_hand.get_value()}')
+                if player_hand.get_value() > 21:  # check if bust, if busted then end hand without dealing to dealer
+                    print(
+                        f'Your hand value is over 21 and you lose ${self.bet} :(')
+                    self.player.balance -= self.bet
+                else:
+                    print('Dealer turn next')
+
+                while dealer_hand.get_value() <= self.BLACK_JACK:
+                    if dealer_hand.get_value() >= 17:
+                        print('Dealer stays')
+                        print(
+                            f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards)} has value {dealer_hand.get_value()}')
+                        break
+                    elif dealer_hand.get_value() <= 16:
+                        print('Dealer hit')
+                        dealer_hand.add_to_hand(self.deck.deal(1))
+                        print(
+                            f'Dealer hand {self.dealer.get_str_hand(dealer_hand.cards)} has value {dealer_hand.get_value()}')
 
             else:
                 print('Okay then...')
