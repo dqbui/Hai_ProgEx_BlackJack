@@ -33,13 +33,25 @@ class Game:
                 player_hand = Hand()
                 dealer_hand = Hand()
 
-                player_hand.add_to_hand(self.deck.deal(6))
-                dealer_hand.add_to_hand(self.deck.deal(6))
+                player_hand.add_to_hand(self.deck.deal(2))
+                dealer_hand.add_to_hand(self.deck.deal(2))
 
                 print(
                     f'Player hand {player_hand.cards} has value {player_hand.get_value()}')
                 print(
                     f'Dealer hand {dealer_hand.cards} has value {dealer_hand.get_value()}')
+
+                while player_hand.get_value() <= 21:
+                    hit_or_stay = input(
+                        'Would you like to hit or stay? ').lower()
+
+                    if hit_or_stay == 'stay':
+                        print('stay')
+                    elif hit_or_stay == 'hit':
+                        print('hit')
+
+                    else:
+                        print('That is not a valid option')
 
             else:
                 print('Okay then...')
