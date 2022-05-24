@@ -7,7 +7,7 @@ from time import sleep
 class Game:
     MINIMUM_BET = 1
     BLACK_JACK = 21
-    HANDS_BEFORE_SHUFFLE = 5
+    HANDS_BEFORE_SHUFFLE = 6
 
     def __init__(self, player, dealer):
         self.player = player
@@ -26,7 +26,8 @@ class Game:
                 self.consecutive_hands -= 1
 
                 if self.consecutive_hands == 0:
-                    print('Five hands played. Reshuffling deck')
+                    print(
+                        f'{self.HANDS_BEFORE_SHUFFLE} hands played. Reshuffling deck')
 
                     self.deck = Deck()
                     self.consecutive_hands = self.HANDS_BEFORE_SHUFFLE
@@ -37,7 +38,7 @@ class Game:
 
                         if new_bet == ".":  # all in function
                             print(
-                                f'All-in! Player bets ${self.player.balance}')
+                                f'All-in! Player bets ${self.player.balance:.2f}')
                             self.bet = self.player.balance
                             break
 
@@ -83,7 +84,7 @@ class Game:
 
                 if player_hand.get_value() > 21:  # check if bust, if busted then end hand without dealing to dealer
                     print(
-                        f'Your hand value is over 21 and you lose ${self.bet} :(')
+                        f'Your hand value is over 21 and you lose ${self.bet:.2f} :(')
                     self.player.balance -= self.bet
                 else:
                     print('Dealer turn next')
