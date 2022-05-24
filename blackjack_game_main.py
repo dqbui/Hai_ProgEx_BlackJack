@@ -3,7 +3,7 @@ from dealer import Dealer
 from game import Game
 from time import sleep
 
-STARTING_BALANCE = 500
+STARTING_BALANCE = 500.0
 player = Player(STARTING_BALANCE)
 dealer = Dealer()
 game = Game(player, dealer)

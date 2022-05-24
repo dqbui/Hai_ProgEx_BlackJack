@@ -20,7 +20,7 @@ class Game:
     def start_game(self):
         while self.player.balance > 0:
             game_starter = input(
-                f'You are starting with ${self.player.balance}. Would you like to play a hand? ')
+                f'You are starting with ${self.player.balance:.2f}. Would you like to play a hand? ')
             if game_starter.lower() == 'yes':
 
                 self.consecutive_hands -= 1
@@ -115,7 +115,7 @@ class Game:
                             print('Player wins')
                             self.player.balance += self.bet
                             if player_hand.get_value() == self.BLACK_JACK:
-                                print('YOU GOT A BLACKJACK. HALF BET AWARDED')
+                                print('YOU GOT A BLACKJACK. EXTRA HALF BET AWARDED')
                                 self.player.balance += self.bet/2
                         else:
                             print('Tie')
